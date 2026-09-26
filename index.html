@@ -22,9 +22,9 @@ button:active{transform:scale(0.95);}
 <div class="container">
 
 <h2>拡張選択</h2>
-<label><input type="checkbox" id="base" checked> レーフワーテル+重役拡張</label>
-<label><input type="checkbox" id="expA"> ブラジル・日本</label>
-<label><input type="checkbox" id="expB"> ファン拡張</label>
+<label><input type="checkbox" id="expA"> レーフワーテル+重役拡張</label>
+<label><input type="checkbox" id="expB"> ブラジル・日本</label>
+<label><input type="checkbox" id="expF"> ファン拡張</label>
 
 <div>
 <button onclick="draw()">抽選</button>
@@ -56,8 +56,8 @@ button:active{transform:scale(0.95);}
 
 // ===== データ =====
 const BASE = {
-countries:["イタリア","アメリカ","フランス","ドイツ","オランダ"],
-items:["ジル","ソロモン","発電４＜４","tommaso","３建物４水","wu fang","マーゴット","アントン","Dr.oct","スペンサー","シモーネ","基礎３３３","水=水即","ふたり建設"],
+countries:["イタリア","アメリカ","フランス","ドイツ"],
+items:["ジル","ソロモン","発電４＜４","３建物４水","アントン","基礎３３３","マヒリ"],
 codes:["0121","0102","0013","0220","0012","1111","1022","2020"],
 numbers:["山1","山2","山3","山4"],
 oka:["丘1","丘2","丘3"],
@@ -69,12 +69,21 @@ last:["４グル","３水","４資材","８金","６→","１２点"]
 };
 
 const EXP_A = {
-countries:["ブラジル","日本"]
+countries:["オランダ"],
+items:["黄ワーカー","wu fang","マーゴット","Dr.oct","スペンサー","シモーネ","水=水即","ふたり建設"],
+extras:["家","外注"],
+pairs:[],
 };
 
 const EXP_B = {
+countries:["ブラジル","日本"]
+};
+
+const EXP_F = {
 items:["電子ちゃん","水→1金","水が資材","上部♾️","上部 道管 発電所回収","3金銀行","国家爆乳女","2人→基礎","人が資材","5金=3点","！7→","生産→金"]
 };
+
+
 
 // ===== 共通 =====
 function r(a,n){return [...a].sort(()=>0.5-Math.random()).slice(0,n)}
