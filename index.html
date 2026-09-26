@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ランダム選択（スマホ最適）</title>
+<title>ランダム選択（アニメーション付き）</title>
 
 <style>
   body {
@@ -34,13 +34,19 @@
   }
 
   button {
-    padding: 6px 12px;
+    padding: 6px 10px;
     font-size: 12px;
-    margin: 4px;
+    margin: 3px;
     border: none;
     border-radius: 6px;
     background: #007bff;
     color: white;
+    transition: transform 0.1s;
+  }
+
+  /* 押したとき */
+  button:active {
+    transform: scale(0.95);
   }
 
   .content {
@@ -70,11 +76,25 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     min-width: 55px;
     text-align: center;
+
+    /* アニメーション */
+    animation: pop 0.25s ease;
   }
 
   .triple {
     display: flex;
     gap: 5px;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 </style>
 </head>
@@ -86,7 +106,9 @@
 <h1>ランダム選択</h1>
 
 <div class="buttons">
-  <button onclick="draw()">抽選</button>
+  <button onclick="draw()">全部</button>
+  <button onclick="drawCountries()">国</button>
+  <button onclick="drawItems()">重役</button>
 </div>
 
 <div class="content">
@@ -146,6 +168,7 @@ const items = ["ジル","ソロモン","！7→","発電４＜４","tommaso","�
 const codes = ["0121","0102","0013","0220","0012","1111","1022","2020"];
 
 const numbers = ["山1","山2","山3","山4"];
+const oka = ["丘1","丘2","丘3"];
 const hirano = ["平野1","平野2","平野3"];
 
 const extras = ["基礎","道管","発電所","上部","上級たいる","家","契約","外注"];
@@ -161,18 +184,29 @@ function getRandomItems(arr, n){
 }
 
 function draw(){
-  result1.innerHTML = getRandomItems(countries,5).map(i=>`<div class="card">${i}</div>`).join("");
-  result2.innerHTML = getRandomItems(items,5).map(i=>`<div class="card">${i}</div>`).join("");
+  drawCountries();
+  drawItems();
+
   result3.innerHTML = getRandomItems(codes,4).map(i=>`<div class="card">${i}</div>`).join("");
 
   result4.innerHTML = getRandomItems(numbers,1).map(i=>`<div class="card">${i}</div>`).join("");
-  result6.innerHTML = getRandomItems(numbers,1).map(i=>`<div class="card">${i}</div>`).join("");
+  result6.innerHTML = getRandomItems(oka,1).map(i=>`<div class="card">${i}</div>`).join("");
   result5.innerHTML = getRandomItems(hirano,1).map(i=>`<div class="card">${i}</div>`).join("");
 
   result7.innerHTML = getRandomItems(extras,5).map(i=>`<div class="card">${i}</div>`).join("");
   result8.innerHTML = getRandomItems(conditions,1).map(i=>`<div class="card">${i}</div>`).join("");
   result9.innerHTML = getRandomItems(pairs,5).map(i=>`<div class="card">${i}</div>`).join("");
   result10.innerHTML = getRandomItems(lastItems,3).map(i=>`<div class="card">${i}</div>`).join("");
+}
+
+function drawCountries(){
+  result1.innerHTML = getRandomItems(countries,5)
+    .map(i=>`<div class="card">${i}</div>`).join("");
+}
+
+function drawItems(){
+  result2.innerHTML = getRandomItems(items,5)
+    .map(i=>`<div class="card">${i}</div>`).join("");
 }
 </script>
 
